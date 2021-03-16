@@ -19,6 +19,7 @@ pip install -e .
 
 3. Some sample usage with the package.
 
+ - Get the price for Bitcoin (default) and display it.
 ```python
 from robinhood_crypto_api import RobinhoodCrypto
 # user/password are your Robinhood login credentials
@@ -26,6 +27,22 @@ r = RobinhoodCrypto(user, password)
 # You are likely to get get shell notifications for inputting your MFA 6-digit codes here.
 # Just type in the number you get from SMS.
 # Current BTC quotes.
+quote_info = r.quotes()
+print("Market Price: " + quote_info['mark_price'])
+```
+
+- Get the price for Dogecoin and display it.
+```python
+from robinhood_crypto_api import RobinhoodCrypto
+r = RobinhoodCrypto(user, password)
+quote_info = r.quotes("DOGEUSD")
+print("Market Price: " + quote_info['mark_price'])
+```
+
+- Place an order for Bitcoin
+```python
+from robinhood_crypto_api import RobinhoodCrypto
+r = RobinhoodCrypto(user, password)
 quote_info = r.quotes()
 # Market order to buy/sell BTC
 market_order_info = r.trade(
